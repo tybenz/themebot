@@ -1,0 +1,50 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	font-family: 'Corbel', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	margin: 0;
+}
+
+#utm-top-bar {
+	height: 0px;
+	background-color: #aaa;
+}
+
+#utm-container {
+	position: relative;
+}
+
+#utm-side-bar {
+	height: 100%;
+	width: 400px;
+	border-right: 1px solid #000;
+	background-color: #eee;
+	float: left;
+}
+
+#utm-side-bar form {
+	padding-bottom: 20px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #000;
+}
+
+#utm-side-bar form h3 {
+	margin: 10px 15px;
+}
+
+#utm-panel {
+	margin-left: 401px;
+}
+
+#utm-control-bar {
+	height: 120px;
+	background-color: #ccc;
+	border-bottom: 1px solid #000;
+}
+
+#utm-preview {
+	height: 400px;
+	background-color: #fff;
+}
