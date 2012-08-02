@@ -6,11 +6,11 @@ $(function() {
 
 var UI = {
 	resize: function() {
-		var $sidebar = $( '#utm-side-bar' ),
-			$preview = $( '#utm-preview' ),
+		var $sidebar = $( '#tmb-side-bar' ),
+			$preview = $( '#tmb-preview' ),
 			winHeight = $( window ).height(),
-			controlBarHeight = $( '#utm-control-bar' ).outerHeight(),
-			topbarHeight = $( '#utm-top-bar' ).outerHeight(),
+			controlBarHeight = $( '#tmb-control-bar' ).outerHeight(),
+			topbarHeight = $( '#tmb-top-bar' ).outerHeight(),
 			sidebarPadding = parseInt( $sidebar.css( 'padding-top' ) ) +
 				parseInt( $sidebar.css( 'padding-bottom' ) ),
 			previewPadding = parseInt( $preview.css( 'padding-top' ) ) +

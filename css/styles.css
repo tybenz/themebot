@@ -7,44 +7,45 @@ body {
 	margin: 0;
 }
 
-#utm-top-bar {
+#tmb-top-bar {
 	height: 0px;
 	background-color: #aaa;
 }
 
-#utm-container {
+#tmb-container {
 	position: relative;
+	height: 100%;
 }
 
-#utm-side-bar {
+#tmb-side-bar {
 	height: 100%;
-	width: 400px;
+	width: 350px;
 	border-right: 1px solid #000;
 	background-color: #eee;
 	float: left;
 }
 
-#utm-side-bar form {
+#tmb-side-bar form {
 	padding-bottom: 20px;
 	margin-bottom: 10px;
 	border-bottom: 1px solid #000;
 }
 
-#utm-side-bar form h3 {
+#tmb-side-bar form h3 {
 	margin: 10px 15px;
 }
 
-#utm-panel {
-	margin-left: 401px;
+#tmb-panel {
+	margin-left: 351px;
 }
 
-#utm-control-bar {
+#tmb-control-bar {
 	height: 120px;
 	background-color: #ccc;
 	border-bottom: 1px solid #000;
 }
 
-#utm-preview {
-	height: 400px;
+#tmb-preview {
 	background-color: #fff;
+	overflow-y: auto;
 }

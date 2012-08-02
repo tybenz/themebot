@@ -1,0 +1,536 @@
+body {
+	margin: 0;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Bitstream", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	color: #FA9403;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+	color: inherit;
+	text-decoration: none;
+}
+
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover,
+h1 a:active, h2 a:active, h3 a:active, h4 a:active, h5 a:active, h6 a:active,
+h1 a:visited, h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {
+	text-decoration: underline;
+	color: inherit;
+}
+
+a {
+	color: #FA9403;
+}
+
+a:hover {
+	color: #C07102;
+}
+
+a:active {
+	color: #945801;
+}
+
+a:visited {
+	color: #7B4901;
+}
+
+.clearfix:before,
+.clearfix:after,
+.row:before,
+.row:after {
+	  content: '\0020';
+	  display: block;
+	  overflow: hidden;
+	  visibility: hidden;
+	  width: 0;
+	  height: 0;
+}
+
+.row:after,
+.clearfix:after {
+  	clear: both;
+}
+
+.row,
+.clearfix {
+  	zoom: 1;
+}
+
+.clear {
+	  clear: both;
+	  display: block;
+	  overflow: hidden;
+	  visibility: hidden;
+	  width: 0;
+	  height: 0;
+}
+
+.header {
+	text-align: center;
+	overflow: hidden;
+}
+
+.header h1 {
+	font-size: 78px;
+	line-height: 80px;
+	text-transform: uppercase;
+	margin: 20px 0;
+	color: #95ECB8;
+}
+
+.header .banner.small {
+	background-color: #555;
+	color: #fff;
+	margin: 0;
+	height: auto;
+}
+
+.header .banner.small h3 {
+	margin: 0;
+	color: #fff;
+}
+
+.container {
+	margin: auto;
+	max-width: 660px;
+	padding: 0 20px;
+}
+
+.main {
+	padding-bottom: 40px;
+}
+
+.banner {
+	background-color: #222;
+	height: 40px;
+	padding: 10px 0;
+	text-align: center;
+	margin-bottom: 30px;
+	color: #eee;
+}
+
+.banner .nav {
+	font-family: "Bitstream", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	overflow: hidden;
+	list-style: none;
+	margin: 0 auto;
+	padding: 0;
+	display: inline-block;
+}
+
+.banner .nav li {
+	float: left;
+	margin: 0 50px;
+	font-size: 33px;
+	text-transform: uppercase;
+}
+
+.banner .nav li a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.banner.footer {
+	margin-bottom: 0;
+}
+
+.footer .copyright {
+	float: right;
+	font-size: 14px;
+}
+
+.post, p {
+	font-size: 20px;
+}
+
+.post .post-header {
+	position: relative;
+	color: #FA9403;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #222;
+}
+
+.post .post-header h1, .post .post-header h1 a {
+	color: #FA9403;
+	margin-bottom: 5px;
+}
+
+.post .post-header .date {
+	position: absolute;
+	bottom: 10px;
+	right: 0;
+}
+
+.post img {
+	width: 200px;
+	float: left;
+	margin-right: 10px;
+}
+
+.project {
+	width: 100%;
+	height: 300px;
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.project .project-thumbnail {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.project:hover .project-footer {
+	display: block;
+}
+
+.project .project-header {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	z-index: 1;
+	background-color: rgba(0,0,0,.8);
+}
+
+.project .project-header h1, .project .project-header h1 a {
+	color: #FA9403;
+	margin: 10px;
+}
+
+.project-footer {
+	position: absolute;
+	bottom: 0;
+	color: #fff;
+	font-size: 16px;
+	line-height: 13px;
+	background-color: rgba(100,100,100,.6);
+	z-index: 1;
+	display: none;
+	width: 100%;
+}
+
+.project-footer p {
+	margin: 20px 10px;
+	line-height: 20px;
+}
+
+.project.left {
+	float: left;
+	margin-right: 20px;
+}
+
+.project.right {
+	float: left;
+}
+
+.project.large {
+	width: 390px;
+}
+
+.project.small {
+	width: 250px;
+}
+
+pre {
+	overflow-x: auto;
+}
+
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+	.container {
+		width: 280px;
+	}
+	
+	.banner .nav li {
+		font-size: 28px;
+		margin: 0 7px;
+	}
+	
+	.header h1 {
+		font-size: 50px;
+		line-height: 65px;
+	}
+	
+	.project.left, .project.right {
+		width: 100%;
+		height: 200px;
+	}
+	
+	.post, p {
+		font-size: 18px;
+	}
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	.container {
+		width: 440px;
+	}
+	
+	.header h1 {
+		font-size: 60px;
+		line-height: 60px;
+	}
+	
+	.project.left, .project.right {
+		width: 48.5%;
+	}
+	
+	.project.left {
+		margin-right: 3%;
+	}
+	
+	.project {
+		margin-bottom: 3%;
+		height: 200px;
+	}
+	
+	.banner .nav li {
+		margin: 0 10px;
+	}
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+	.post img {
+		width: 100%;
+		float: none;
+		margin-right: 0;
+	}
+	
+	.post .post-header .date {
+		position: static;
+		margin-bottom: 5px;
+		display: block;
+	}
+}
+
+/* GitHub Theme */
+/* Pretty printing styles. Used with prettify.js. */
+/* SPAN elements with the classes below are added by prettyprint. */
+/* plain text */
+.pln {
+  color: #333333; }
+
+@media screen {
+  /* string content */
+  .str {
+    color: #dd1144; }
+
+  /* a keyword */
+  .kwd {
+    color: #333333; }
+
+  /* a comment */
+  .com {
+    color: #999988; }
+
+  /* a type name */
+  .typ {
+    color: #445588; }
+
+  /* a literal value */
+  .lit {
+    color: #445588; }
+
+  /* punctuation */
+  .pun {
+    color: #333333; }
+
+  /* lisp open bracket */
+  .opn {
+    color: #333333; }
+
+  /* lisp close bracket */
+  .clo {
+    color: #333333; }
+
+  /* a markup tag name */
+  .tag {
+    color: navy; }
+
+  /* a markup attribute name */
+  .atn {
+    color: teal; }
+
+  /* a markup attribute value */
+  .atv {
+    color: #dd1144; }
+
+  /* a declaration */
+  .dec {
+    color: #333333; }
+
+  /* a variable name */
+  .var {
+    color: teal; }
+
+  /* a function name */
+  .fun {
+    color: #990000; } }
+/* Use higher contrast and text-weight for printable form. */
+@media print, projection {
+  .str {
+    color: #060; }
+
+  .kwd {
+    color: #006;
+    font-weight: bold; }
+
+  .com {
+    color: #600;
+    font-style: italic; }
+
+  .typ {
+    color: #404;
+    font-weight: bold; }
+
+  .lit {
+    color: #044; }
+
+  .pun, .opn, .clo {
+    color: #440; }
+
+  .tag {
+    color: #006;
+    font-weight: bold; }
+
+  .atn {
+    color: #404; }
+
+  .atv {
+    color: #060; } }
+/* Style */
+pre.prettyprint {
+  background: white;
+  font-family: Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  border: 1px solid #ccc;
+  padding: 10px; }
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0; }
+
+/* IE indents via margin-left */
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+  /* */ }
+
+/* Alternate shading for lines */
+li.L1,
+li.L3,
+li.L5,
+li.L7,
+li.L9 {
+  /* */ }
+
+
+@font-face {
+    font-family: 'Bitstream';
+    src: url('../font/VeraMono-webfont.eot');
+    src: url('../font/VeraMono-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/VeraMono-webfont.woff') format('woff'),
+         url('../font/VeraMono-webfont.ttf') format('truetype'),
+         url('../font/VeraMono-webfont.svg#BitstreamVeraSansMonoRoman') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'BitstreamOblique';
+    src: url('../font/VeraMono-Italic-webfont.eot');
+    src: url('../font/VeraMono-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/VeraMono-Italic-webfont.woff') format('woff'),
+         url('../font/VeraMono-Italic-webfont.ttf') format('truetype'),
+         url('../font/VeraMono-Italic-webfont.svg#BitstreamVeraSansMonoOblique') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'BitstreamBold';
+    src: url('../font/VeraMono-Bold-webfont.eot');
+    src: url('../font/VeraMono-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/VeraMono-Bold-webfont.woff') format('woff'),
+         url('../font/VeraMono-Bold-webfont.ttf') format('truetype'),
+         url('../font/VeraMono-Bold-webfont.svg#BitstreamVeraSansMonoBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'BitstreamBoldOblique';
+    src: url('../font/VeraMono-Bold-Italic-webfont.eot');
+    src: url('../font/VeraMono-Bold-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/VeraMono-Bold-Italic-webfont.woff') format('woff'),
+         url('../font/VeraMono-Bold-Italic-webfont.ttf') format('truetype'),
+         url('../font/VeraMono-Bold-Italic-webfont.svg#BitstreamVeraSansMonoBdOb') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #fff;
+}
+
+a {
+	color: #BA100E;
+}
+
+a:hover {
+	color: #EE1212;
+}
+
+a:active {
+	color: #A10C0C;
+}
+
+a:visited {
+	color: #8F0B0B;
+}
+
+.header h1 {
+	color: #247999;
+}
+
+.header .banner.small {
+	background-color: #555;
+	color: #fff;
+}
+
+.header .banner.small h3 {
+	color:;
+}
+
+.post .post-header {
+	color: #BA100E;
+	border-bottom: 1px solid #000;
+}
+
+.post .post-header h1, .post .post-header h1 a {
+	color: #BA100E;
+}
+
+.project .project-header h1, .project .project-header h1 a {
+	color: #FA9403;
+}
+
+.project-footer {
+	color:;
+}
