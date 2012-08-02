@@ -1,7 +1,4 @@
-# UTM
-
-###Universal Theming Machine
-
+# ThemeBot
 
 - Leverage LESS syntax to parse for style variables
 - Complete CSS parsing to store CSS selector for event binding
