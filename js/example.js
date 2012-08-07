@@ -2,12 +2,11 @@ var Example = ThemeBot.extend({
     spec: {
     	global: {
     		"font-family": {
-    			"selector": "body",
-    		}, 
-
-    		"max-width": { 
-    			"selector": ".container" 
-    		}  
+    			"selector": "body"
+    		},
+			"color": {
+				"selector": "body"
+			}
     	},
     	header: {
     		"color": {
@@ -40,7 +39,7 @@ var Example = ThemeBot.extend({
     	},
     	postBody: {
     		"color": {
-    			"selector": ".post, p"
+    			"selector": ".post p"
     		}
     	},
     	footer: {

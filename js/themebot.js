@@ -1,27 +1,8 @@
-(function( jQuery, window ) {
+(function ( jQuery, window ) {
 
-	CSS = 'body {\
-		margin: 0;\
-		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;\
-	}\
-\
-	h1, h2, h3, h4, h5, h6 {\
-		font-family: "Bitstream", "Helvetica Neue", Helvetica, Arial, sans-serif;\
-		font-weight: normal;\
-		color: #FA9403;\
-	}\
-\
-	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {\
-		color: inherit;\
-		text-decoration: none;\
-	}\
-\
-	h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover,\
-	h1 a:active, h2 a:active, h3 a:active, h4 a:active, h5 a:active, h6 a:active,\
-	h1 a:visited, h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {\
-		text-decoration: underline;\
-		color: inherit;\
-	}';
+	$(function() {
+		CSS = $('#style').text();
+	});
 	
 	ThemeBot = function(){
 		this.init();
@@ -54,10 +35,73 @@
 			
 		},
 		
+		rules: [],
+		
+		pieces: [],
+		
 		parse: function() {
-			var regex = /([\.\#\>\s\:\,A-z0-9]*)\{\s*([A-z\-]*\:\s*[^\}]*\s*\;\s*)*\s*\}/g;
+			var commentRegex = /\/\*[\s\S]*?\*\//g,
+				selectorRegex = /[\.\#\>\s\:\,A-z0-9]*(?=\{)/,
+				allRulesRegex = /([^:\}]*)\s*:\s*([^;\}]*)\s*;/g,
+				ruleRegex = /([^:\}]*)\s*:\s*([^;\}]*)\s*;/,
+				valueRegex = /[^;]*/,
+				openRegex = /\s*\{\s*/,
+				closeRegex = /\s*\}\s*/,
+				pos, pos2, length, block,
+				selector, rules, string;
+				
+			while ( CSS ) {
+				//get comments
+				pos = CSS.search( commentRegex );
+				if ( pos == 0 ) {
+					this._tokenize( commentRegex, 'string' );
+				}
+				
+				//get selector
+				selector = this._tokenize( selectorRegex, 'selector' );
+				
+				//skip open bracket
+				this._tokenize( openRegex, 'string' );
+				
+				//get all rules within brackets
+				while ( CSS.search( closeRegex ) !== 0 ) {
+					this._tokenize( ruleRegex, 'rule', selector );
+				}
+				
+				//skip closed bracket
+				this._tokenize( closeRegex, 'string' );
+			}
 			
-			matches = regex.exec( CSS );
+		},
+		
+		_tokenize: function( regex, type, selector ) {
+			var pos = CSS.search( regex ),
+				match = CSS.match( regex ),
+				length = match[ 0 ].length,
+				string = CSS.substr( pos, length );
+				
+			CSS = CSS.substring( pos + length );
+
+			//switch type to see create the token
+			switch ( type ) {
+				case 'selector':
+				case 'string':
+					this.pieces.push({
+						type: type,
+						literal: string,
+						formatted: $.trim( string )
+					});
+					return $.trim( string );
+				case 'rule':
+					this.pieces.push({
+						selector: selector,
+						literal: string,
+						rule: $.trim( match[ 1 ] ),
+						value: $.trim( match[ 2 ] )
+					});
+					return { rule: $.trim( match[ 1 ] ), value: $.trim( match[ 2 ] ) };
+				default: break;
+			}
 		},
 		
 		panel: function() {
