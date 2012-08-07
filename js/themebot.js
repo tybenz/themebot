@@ -44,9 +44,7 @@
 		parse: function() {
 			var commentRegex = /\/\*[\s\S]*?\*\//g,
 				selectorRegex = /[\.\-\#\>\s\:\,A-z0-9]*(?=\{)/,
-				allRulesRegex = /([^:\}]*)\s*:\s*([^;\}]*)\s*;/g,
 				ruleRegex = /([^:\}]*)\s*:\s*([^;\}]*)\s*;/,
-				valueRegex = /[^;]*/,
 				openRegex = /\s*\{\s*/,
 				closeRegex = /\s*\}\s*/,
 				pos, pos2, length, block,
@@ -77,11 +75,10 @@
 		},
 		
 		_tokenize: function( regex, type, selector ) {
-			var pos = CSS.search( regex ),
-				match = CSS.match( regex ),
-				length = match[ 0 ].length,
-				string = CSS.substr( pos, length ),
-				rule, value, piece;
+			var result = regex.exec( CSS ),
+				length = result[ 0 ].length,
+				pos = result.index,
+				string = result[ 0 ];
 				
 			CSS = CSS.substring( pos + length );
 
@@ -96,8 +93,8 @@
 					});
 					return $.trim( string );
 				case 'rule':
-					rule = $.trim( match[ 1 ] ),
-					value = $.trim( match[ 2 ] ),
+					rule = $.trim( result[ 1 ] ),
+					value = $.trim( result[ 2 ] ),
 					piece = {
 						selector: selector,
 						literal: string,
