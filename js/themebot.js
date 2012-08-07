@@ -39,16 +39,18 @@
 		
 		pieces: [],
 		
+		stypeMap: {},
+		
 		parse: function() {
 			var commentRegex = /\/\*[\s\S]*?\*\//g,
-				selectorRegex = /[\.\#\>\s\:\,A-z0-9]*(?=\{)/,
+				selectorRegex = /[\.\-\#\>\s\:\,A-z0-9]*(?=\{)/,
 				allRulesRegex = /([^:\}]*)\s*:\s*([^;\}]*)\s*;/g,
 				ruleRegex = /([^:\}]*)\s*:\s*([^;\}]*)\s*;/,
 				valueRegex = /[^;]*/,
 				openRegex = /\s*\{\s*/,
 				closeRegex = /\s*\}\s*/,
 				pos, pos2, length, block,
-				selector, rules, string;
+				selector, rules, string, editable;
 				
 			while ( CSS ) {
 				//get comments
@@ -78,7 +80,8 @@
 			var pos = CSS.search( regex ),
 				match = CSS.match( regex ),
 				length = match[ 0 ].length,
-				string = CSS.substr( pos, length );
+				string = CSS.substr( pos, length ),
+				rule, value, piece;
 				
 			CSS = CSS.substring( pos + length );
 
@@ -93,15 +96,53 @@
 					});
 					return $.trim( string );
 				case 'rule':
-					this.pieces.push({
+					rule = $.trim( match[ 1 ] ),
+					value = $.trim( match[ 2 ] ),
+					piece = {
 						selector: selector,
 						literal: string,
-						rule: $.trim( match[ 1 ] ),
-						value: $.trim( match[ 2 ] )
-					});
-					return { rule: $.trim( match[ 1 ] ), value: $.trim( match[ 2 ] ) };
+						rule: rule,
+						value: value,
+						editable: false
+					};
+						
+					for ( var groupName in this.spec ) {
+						var group = this.spec[ groupName ];
+						for ( var ruleName in group ) {
+							editable = rule == ruleName &&
+								this._checkSelector( group[ ruleName ].selector, selector );
+							if ( editable ) {
+								piece.editable = true;
+								if ( !this.styleMap[ groupName ] ) {
+									this.styleMap[ groupName ] = {};
+								}
+								this.styleMap[ groupName ][ rule ] = value;
+								break;
+							}
+						}
+						if ( piece.editable ) {
+							break;
+						}
+					}
+						
+					this.pieces.push( piece );
+					return { rule: rule, value: value };
 				default: break;
 			}
+		},
+		
+		_checkSelector: function( small, big ) {
+			//takes in a shortened version of a selector, and a larger, expanded version
+			//and checks for semantic equivalence
+			var pieces = small.split( ',' );
+			
+			for ( var idx in pieces ) {
+				if ( big.indexOf( pieces[ idx ] ) != -1 ) {
+					return true;
+				}
+			}
+			
+			return false;
 		},
 		
 		panel: function() {
