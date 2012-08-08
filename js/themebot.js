@@ -1,7 +1,8 @@
 (function ( jQuery, window ) {
 
 	$(function() {
-		CSS = $('#style').text();
+		$CSS = $( '#style' );
+		CSS = $CSS.text();
 	});
 	
 	ThemeBot = function(){
@@ -39,9 +40,34 @@
 		
 		pieces: [],
 		
-		stypeMap: {},
+		writeOut: function() {
+			var piece, prev,
+				newStyle = '';
+			
+			for ( var idx in this.pieces ) {
+				piece = this.pieces[ idx ];
+				
+				if ( piece.editable ) {
+					prev = piece.value;
+					piece.value = this.styleMap[ piece.group ][ piece.rule ];
+					piece.literal = piece.literal.replace( new RegExp( prev ), piece.value );
+				}
+				newStyle += piece.literal;
+			}
+			
+			$CSS.text( newStyle );
+		},
 		
 		parse: function() {
+			// var regex = /(\/\*[\s\S]*?\*\/)?([\.\-\#\>\s\:\,A-z0-9]*)(\s*\{\s*)(([^:\}]*)\s*:\s*([^;\}]*)\s*;)*(\s*\}\s*)/;
+			// 			
+			// 			var result = regex.exec( CSS ),
+			// 				length = result[ 0 ].length,
+			// 				pos = result.index,
+			// 				string = result[ 0 ];
+			// 			
+			// 			console.log(result);
+			
 			var commentRegex = /\/\*[\s\S]*?\*\//g,
 				selectorRegex = /[\.\-\#\>\s\:\,A-z0-9]*(?=\{)/,
 				ruleRegex = /([^:\}]*)\s*:\s*([^;\}]*)\s*;/,
@@ -110,6 +136,7 @@
 								this._checkSelector( group[ ruleName ].selector, selector );
 							if ( editable ) {
 								piece.editable = true;
+								piece.group = groupName;
 								if ( !this.styleMap[ groupName ] ) {
 									this.styleMap[ groupName ] = {};
 								}
@@ -131,9 +158,10 @@
 		_checkSelector: function( small, big ) {
 			//takes in a shortened version of a selector, and a larger, expanded version
 			//and checks for semantic equivalence
-			var pieces = small.split( ',' );
+			var pieces = small.split( ',' ),
+				idx;
 			
-			for ( var idx in pieces ) {
+			for ( idx in pieces ) {
 				if ( big.indexOf( pieces[ idx ] ) != -1 ) {
 					return true;
 				}

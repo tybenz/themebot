@@ -7,21 +7,7 @@
 
 	<link rel="stylesheet" type="text/css" href="css/styles.css" />
 
-    <link rel="stylesheet" type="text/css" href="css/blackout.css" />
-
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/ui.js"></script>
-	<script type="text/javascript" src="js/themebot.js"></script>
-	<script type="text/javascript" src="js/example.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            ex = new Example();
-        });
-    </script>
-</head>
-<body>
-    
-    <div id="style" style="display: none">body {
+    <style id="style" type="text/css">body {
     	margin: 0;
     	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     	color: #000;
@@ -264,7 +250,19 @@
     	overflow-x: auto;
     }
 
-    </div>
+    </style>
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/ui.js"></script>
+	<script type="text/javascript" src="js/themebot.js"></script>
+	<script type="text/javascript" src="js/example.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            ex = new Example();
+        });
+    </script>
+</head>
+<body id="tmb-body">
     
     <div id="tmb-top-bar">
     </div>

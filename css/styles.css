@@ -2,8 +2,7 @@ html, body {
 	height: 100%;
 }
 
-body {
-	font-family: 'Corbel', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+#tmb-body {
 	margin: 0;
 }
 
@@ -18,6 +17,7 @@ body {
 }
 
 #tmb-side-bar {
+	color: #000;
 	height: 100%;
 	width: 350px;
 	border-right: 1px solid #000;
