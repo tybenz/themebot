@@ -10,21 +10,19 @@
 	};
 	ThemeBot.prototype = {
 		init: function() {
+			
+			//parse CSS
+			this.parse();
+			
 			//initialize UI elements
 			this.initUI();
 			
 			//build panel and bind form elements and draggables
 			this.panel();
 			
-			//parse CSS
-			this.parse();
 		},
 		
 		$panel: "#tmb-side-bar",
-		
-		setPanel: function() {
-			this.$panel = $( this.panel );
-		},
 		
 		spec: {},
 		
@@ -36,7 +34,7 @@
 			
 		},
 		
-		rules: [],
+		props: [],
 		
 		pieces: [],
 		
@@ -49,32 +47,33 @@
 				
 				if ( piece.editable ) {
 					prev = piece.value;
-					piece.value = this.styleMap[ piece.group ][ piece.rule ];
+					piece.value = this.styleMap[ piece.group ][ piece.prop ];
 					piece.literal = piece.literal.replace( new RegExp( prev ), piece.value );
 				}
 				newStyle += piece.literal;
 			}
 			
 			$CSS.text( newStyle );
+			console.log(newStyle);
 		},
 		
 		parse: function() {
 			// var regex = /(\/\*[\s\S]*?\*\/)?([\.\-\#\>\s\:\,A-z0-9]*)(\s*\{\s*)(([^:\}]*)\s*:\s*([^;\}]*)\s*;)*(\s*\}\s*)/;
-			// 			
-			// 			var result = regex.exec( CSS ),
-			// 				length = result[ 0 ].length,
-			// 				pos = result.index,
-			// 				string = result[ 0 ];
-			// 			
-			// 			console.log(result);
+			// 		
+			// var result = regex.exec( CSS ),
+			// 	length = result[ 0 ].length,
+			// 	pos = result.index,
+			// 	string = result[ 0 ];
+			// 
+			// console.log(result);
 			
 			var commentRegex = /\/\*[\s\S]*?\*\//g,
 				selectorRegex = /[\.\-\#\>\s\:\,A-z0-9]*(?=\{)/,
-				ruleRegex = /([^:\}]*)\s*:\s*([^;\}]*)\s*;/,
+				propRegex = /([^:\}]*)\s*:\s*([^;\}]*)\s*;/,
 				openRegex = /\s*\{\s*/,
 				closeRegex = /\s*\}\s*/,
 				pos, pos2, length, block,
-				selector, rules, string, editable;
+				selector, props, string, editable;
 				
 			while ( CSS ) {
 				//get comments
@@ -89,9 +88,9 @@
 				//skip open bracket
 				this._tokenize( openRegex, 'string' );
 				
-				//get all rules within brackets
+				//get all props within brackets
 				while ( CSS.search( closeRegex ) !== 0 ) {
-					this._tokenize( ruleRegex, 'rule', selector );
+					this._tokenize( propRegex, 'prop', selector );
 				}
 				
 				//skip closed bracket
@@ -118,29 +117,29 @@
 						formatted: $.trim( string )
 					});
 					return $.trim( string );
-				case 'rule':
-					rule = $.trim( result[ 1 ] ),
+				case 'prop':
+					prop = $.trim( result[ 1 ] ),
 					value = $.trim( result[ 2 ] ),
 					piece = {
 						selector: selector,
 						literal: string,
-						rule: rule,
+						prop: prop,
 						value: value,
 						editable: false
 					};
 						
 					for ( var groupName in this.spec ) {
 						var group = this.spec[ groupName ];
-						for ( var ruleName in group ) {
-							editable = rule == ruleName &&
-								this._checkSelector( group[ ruleName ].selector, selector );
+						for ( var propName in group ) {
+							editable = prop == propName &&
+								this._checkSelector( group[ propName ].selector, selector );
 							if ( editable ) {
 								piece.editable = true;
 								piece.group = groupName;
 								if ( !this.styleMap[ groupName ] ) {
 									this.styleMap[ groupName ] = {};
 								}
-								this.styleMap[ groupName ][ rule ] = value;
+								this.styleMap[ groupName ][ prop ] = value;
 								break;
 							}
 						}
@@ -150,7 +149,7 @@
 					}
 						
 					this.pieces.push( piece );
-					return { rule: rule, value: value };
+					return { prop: prop, value: value };
 				default: break;
 			}
 		},
@@ -180,36 +179,47 @@
 				group = this.spec[ label ];
 				$group = $( '<fieldset><legend>' + label + '</legend></fieldset>' );
 				for ( var idx in group ) {
-					$group.append( this.createControl( idx, group[ idx ] ) );
+					$group.append( this.createControl( idx, label ) );
 				}
 				this.$panel.append( $group );
 			}
 		},
 		
-		createControl: function( name, props ) {
-			var $control;
+		createControl: function( name, group ) {
+			var $control,
+				self = this;
 			
 			switch ( name ) {
 				case 'background-color':
 				case 'color':
-					$control = $( '<label>' + name + '</label><br /><input class="' +
-						name + '" data-selector="' + props.selector + '" /><br/>' );
+					$control = $( '<label>' + name + '</label><br /><input data-prop="' +
+						name + '" data-group="' + group + '" /><br/>' );
 					break;
 				case 'text-shadow':
-					$control = $( '<label>' + name + '</label><br /><input class="' +
-						name + '" data-selector="' + props.selector + '" /><br/>' );
+					$control = $( '<label>' + name + '</label><br /><input data-prop="' +
+						name + '" data-group="' + group + '" /><br/>' );
 					break;
 				case 'border-radius':
-					$control = $( '<label>' + name + '</label><br /><input class="' +
-						name + '" data-selector="' + props.selector + '" /><br/>' );
+					$control = $( '<label>' + name + '</label><br /><input data-prop="' +
+						name + '" data-group="' + group + '" /><br/>' );
 					break;
 				case 'font-family':
-					$control = $( '<label>' + name + '</label><br /><input class="' +
-						name + '" data-selector="' + props.selector + '" /><br/>' );
+					$control = $( '<label>' + name + '</label><br /><input data-prop="' +
+						name + '" data-group="' + group + '" /><br/>' );
 					break;
 				default:
 					break;
 			}
+			
+			$( $control[2] ).on( 'blur', function() {
+				console.log('test');
+				var $this = $( this ),
+					group = $this.data( 'group' ),
+					prop = $this.data( 'prop' );
+				
+				self.styleMap[ group ][ prop ] = $this.val();
+				self.writeOut();
+			});
 			
 			return $control;
 		}

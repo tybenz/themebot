@@ -14,4 +14,4 @@
 
 ###API
 
-Extensibility: Extend base class and override styleMap -> assigns rules to selectors and behaviors
+Extensibility: Extend base class and override styleMap -> assigns props to selectors and behaviors
