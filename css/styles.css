@@ -23,6 +23,7 @@ html, body {
 	border-right: 1px solid #000;
 	background-color: #eee;
 	float: left;
+  overflow: auto;
 }
 
 #tmb-side-bar form {

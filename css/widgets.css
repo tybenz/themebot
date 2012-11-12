@@ -1,0 +1,93 @@
+.tmb-spinner-buttons {
+  float: left;
+}
+
+.tmb-spinner-buttons .button {
+  width: 20px;
+  height: 10px;
+  background-color: #fff;
+  border: 1px solid #000;
+  position: relative;
+}
+
+.tmb-spinner-buttons .tmb-spinner-up-button:after {
+  content: "\25B2";
+  font-size: 10px;
+  position: absolute;
+  top: -1px;
+  left: 5px;
+}
+
+.tmb-spinner-buttons .tmb-spinner-down-button:after {
+  content: "\25BC";
+  font-size: 10px;
+  position: absolute;
+  top: -1px;
+  left: 5px;
+}
+
+.select {
+	overflow: hidden;
+	width: 195px;
+	height: 22px;
+	margin: 10px 0;
+	position: relative;
+}
+
+.select.open {
+	overflow: visible;
+}
+
+.select select {
+	display: none;
+}
+
+.select .select-box .textbox, .select .button {
+	float: left;
+	margin: 0;
+}
+
+.select .select-box {
+  height: 22px;
+}
+
+.select .button {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000;
+}
+
+.select .textbox {
+	width: 150px;
+}
+
+.select .options {
+	position: absolute;
+	top: 36px;
+	left: 0;
+	box-shadow: 0 0 3px 0 #57B3EA;
+	z-index: 10;
+}
+
+.select .options.filter .option {
+	display: none;
+}
+
+.select .options.filter .option.active {
+	display: block;
+}
+
+.select .option {
+	width: 172px;
+	border-bottom-color: #555;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.select .option .option-inner {
+	width: 400px;
+}
+
+.select .option:hover, .select .option.highlight {
+	background-color: #34373C;
+}

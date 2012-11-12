@@ -6,91 +6,96 @@
   <title>Themebot</title>
 
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
-  <link rel="stylesheet" type="text/css" href="css/blackout.css" />
+  <link rel="stylesheet" type="text/css" href="css/widgets.css" />
+  <link id="stylesheet" rel="stylesheet" type="text/css" href="css/blackout.css" />
 
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/ui.js"></script>
-	<script type="text/javascript" src="js/themebot.js"></script>
-	<script type="text/javascript" src="js/example.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            ex = new Example();
-        });
-    </script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/ui.js"></script>
+  <script type="text/javascript" src="js/themebot.js"></script>
+  <script type="text/javascript" src="js/example.js"></script>
+  <script type="text/javascript" src="js/drag-tracker.js"></script>
+  <script type="text/javascript" src="js/spinner.js"></script>
+  <script type="text/javascript" src="js/combobox.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      ex = new Example();
+    });
+  </script>
 </head>
 <body id="tmb-body">
-    
-    <div id="tmb-top-bar">
+
+  <div id="tmb-top-bar">
+  </div>
+
+  <div id="tmb-container">
+
+    <div id="tmb-side-bar">
     </div>
-    
-    <div id="tmb-container">
-    
-        <div id="tmb-side-bar"></div>
-    
-        <div id="tmb-panel">
-            <div id="tmb-control-bar"></div>
-            <div id="tmb-preview">
-                
-                <div class="header">
-                    <div class="container">
-                        <h1>Blackout</h1>
-                        <div class="small banner">
-                            <h3>Subtitle</h3>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="banner">
-                    <div class="container">
-                        <ul class="nav clearfix">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">More</a></li>
-                        </ul>
-                    </div>
-                </div>
+    <div id="tmb-panel">
+      <div id="tmb-control-bar"></div>
+      <div id="tmb-preview">
 
-                <div class="main">
-                    <div class="container">
-                        <div class="post">
-                            <div class="post-header">
-                                <h1>
-                                    <a href="#">Title 1</a>
-                                </h1>
-                                <span class="date">1:56PM July 30, 2012</span>
-                            </div>
-                            <div class="post-body">
-                                <p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
-
-                                <p>Sed posuere consectetur est at lobortis. Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna. Etiam porta sem malesuada magna mollis euismod. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="post">
-                            <div class="post-header">
-                                <h1>
-                                    <a href="#">Title 2</a>
-                                </h1>
-                                <span class="date">1:57PM July 30, 2012</span>
-                            </div>
-                            <div class="post-body">
-                                <p>Nulla vitae elit libero, a pharetra augue. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
-
-                                <p>Donec ullamcorper nulla non metus auctor fringilla. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas sed diam eget risus varius blandit sit amet non magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla vitae elit libero, a pharetra augue.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="banner footer">
-                    <div class="container clearfix">
-                        <p class="copyright">&copy; Blackout 2012</p>
-                    </div>
-                </div>
-                
+        <div class="header">
+          <div class="container">
+            <h1>Blackout</h1>
+            <div class="small banner">
+              <h3>Subtitle</h3>
             </div>
+          </div>
         </div>
 
+        <div class="banner">
+          <div class="container">
+            <ul class="nav clearfix">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">More</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="main">
+          <div class="container">
+            <div class="post">
+              <div class="post-header">
+                <h1>
+                  <a href="#">Title 1</a>
+                </h1>
+                <span class="date">1:56PM July 30, 2012</span>
+              </div>
+              <div class="post-body">
+                <p>Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+
+                <p>Sed posuere consectetur est at lobortis. Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna. Etiam porta sem malesuada magna mollis euismod. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+              </div>
+            </div>
+
+            <div class="post">
+              <div class="post-header">
+                <h1>
+                  <a href="#">Title 2</a>
+                </h1>
+                <span class="date">1:57PM July 30, 2012</span>
+              </div>
+              <div class="post-body">
+                <p>Nulla vitae elit libero, a pharetra augue. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+
+                <p>Donec ullamcorper nulla non metus auctor fringilla. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas sed diam eget risus varius blandit sit amet non magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla vitae elit libero, a pharetra augue.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="banner footer">
+          <div class="container clearfix">
+            <p class="copyright">&copy; Blackout 2012</p>
+          </div>
+        </div>
+
+      </div>
     </div>
+
+  </div>
 </body>
 </html>
