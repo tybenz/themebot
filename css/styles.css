@@ -50,3 +50,90 @@ html, body {
 	background-color: #fff;
 	overflow-y: auto;
 }
+
+#colorpicker {
+	width: 185px;
+	height: 150px;
+	padding: 10px;
+	background-color: #000;
+	z-index: 5;
+	position: absolute;
+	display: none;
+}
+
+#colorpicker .tmb-colorpicker-graph {
+	height: 150px;
+	width: 150px;
+	float: left;
+}
+
+#colorpicker .graph {
+	background-color: #0f0;
+	height: 150px;
+	width: 150px;
+	position: relative;
+}
+
+#colorpicker .graph .thumb {
+	width: 13px;
+	height: 13px;
+	border: 1px solid #000;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	border-radius: 7px;
+	z-index: 3;
+}
+
+#colorpicker .tmb-colorpicker-hue {
+	width: 20px;
+	height: 150px;
+	float: left;
+	margin-left: 13px;
+}
+
+#colorpicker .hue {
+	background-image: url(../img/hue.png);
+	width: 20px;
+	height: 150px;
+	position: relative;
+}
+
+#colorpicker .hue .thumb {
+	height: 10px;
+	width: 20px;
+	border-width: 1px 0;
+	position: absolute;
+	top: 20px;
+	z-index: 3;
+}
+
+#colorpicker .hue .thumb:before {
+	display: block;
+	width: 7px;
+	height: 10px;
+	background: url(../img/arrow-right.png) no-repeat;
+	position: absolute;
+	left: -7px;
+	content: "";
+}
+
+#colorpicker .hue .thumb:after {
+	display: block;
+	width: 7px;
+	height: 10px;
+	background: url(../img/arrow-left.png) no-repeat;
+	position: absolute;
+	right: -7px;
+	content: "";
+}
+
+#colorpicker .mask {
+	background: url(../img/mask.png) no-repeat;
+	width: 150px;
+	height: 150px;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 2;
+}

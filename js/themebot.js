@@ -58,6 +58,8 @@
           this.$panel.append( $group );
         }
       }
+
+      new ThemeBot.Colorpicker( $( '#colorpicker' ) );
     },
 
     createControl: function( name ) {
@@ -71,7 +73,7 @@
         case 'hover':
         case 'active':
         case 'visited':
-          $control = $( '<label>' + name + '</label><br /><input data-prop="' + name + '" value="' + this.styleMap[ name ].replace( /"/g, "'" ) + '" /><br/>' );
+          $control = $( '<label>' + name + '</label><br /><input class="tmb-colorpicker-input data-prop="' + name + '" value="' + this.styleMap[ name ].replace( /"/g, "'" ) + '" /><br/>' );
           break;
         case 'textshadow':
           $control = $( '<label>' + name + '</label><br /><input data-prop="' + name + '" value="' + this.styleMap[ name ].replace( /"/g, "'" ) + '" /><br/>' );
