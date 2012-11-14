@@ -27,17 +27,11 @@
       this.$graph = this.$element.find( "." + opts.graphClassName );
       this.$hue = this.$element.find( "." + opts.hueClassName );
 
-      var sliderWidget = $( '#colorpicker .tmb-colorpicker-graph' ).data( 'slider' );
-      if ( sliderWidget ) {
-        this.graph = sliderWidget;
-      } else {
-        this.graph = new ThemeBot.Slider( "#colorpicker .tmb-colorpicker-graph", {
-          trackClassName: "graph",
-          thumbClassName: "thumb",
-          ignoreY: false
-        });
-        $( '#colorpicker .tmb-colorpicker-graph' ).data( 'slider', this.graph );
-      }
+      this.graph = new ThemeBot.Slider( "#colorpicker .tmb-colorpicker-graph", {
+        trackClassName: "graph",
+        thumbClassName: "thumb",
+        ignoreY: false
+      });
 
       $( this.graph ).on( "tmb-slider-update", function( evt, data ) {
         self.value.s = data.percentageX * 100;
@@ -94,6 +88,7 @@
     _writeOut: function() {
       if ( this.$input ) {
         this.$input.val( this._convert( this.value, "hsb2hex" ) );
+        this.$input.trigger( 'change' );
       }
     },
 

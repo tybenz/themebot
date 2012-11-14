@@ -73,14 +73,17 @@
         case 'hover':
         case 'active':
         case 'visited':
-          $control = $( '<label>' + name + '</label><br /><input class="tmb-colorpicker-input data-prop="' + name + '" value="' + this.styleMap[ name ].replace( /"/g, "'" ) + '" /><br/>' );
+          $control = $( '<label>' + name + '</label><br /><input class="tmb-colorpicker-input" data-prop="' + name + '" value="' + this.styleMap[ name ] + '" /><br/>' );
+          $($control[2]).on('change keyup blur', function() {
+            self.updateStyle( $( this ) );
+          });
           break;
         case 'textshadow':
-          $control = $( '<label>' + name + '</label><br /><input data-prop="' + name + '" value="' + this.styleMap[ name ].replace( /"/g, "'" ) + '" /><br/>' );
+          $control = $( '<label>' + name + '</label><br /><input data-prop="' + name + '" value="' + this.styleMap[ name ] + '" /><br/>' );
           break;
         case 'radius':
         case 'border':
-          $control = $( '<label>' + name + '</label><br /><input data-prop="' + name + '" value="' + this.styleMap[ name ].replace( /"/g, "'" ) + '" /><br/>' );
+          $control = $( '<label>' + name + '</label><br /><input data-prop="' + name + '" value="' + this.styleMap[ name ] + '" /><br/>' );
           break;
         case 'font':
           $control = $( '<label>' + name + '</label><br /><input data-prop="' + name + '" value="' + this.styleMap[ name ].replace( /"/g, "'" ) + '" /><br/>' );
@@ -115,7 +118,6 @@
                             <input type="" class="tmb-spinner-unit" value="px" name="" /> \
                           </div>' );
           var spinner = new ThemeBot.Spinner( $( $control[2] ) );
-          console.log( $( $control[2] ).find('input:first') );
           $( $control[2] ).find( 'input:first' ).on( 'blur keyup change', function(){
             self.updateStyle( $( this ) );
           });
