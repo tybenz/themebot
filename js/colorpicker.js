@@ -69,10 +69,10 @@
 
         self.$input = $this; 
         $( self.graph ).on( 'tmb-slider-update', function( evt, data ) {
-          $this.css( 'background-color', self._convert({ h: self.value.h, s: 100, b: 100 }, "hsb2hex" ) );
+          $this.css( 'background-color', self._convert({ h: self.value.h, s: self.value.s, b: self.value.b }, "hsb2hex" ) );
         });
         $( self.hue ).on( 'tmb-slider-update', function( evt, data ) {
-          $this.css( 'background-color', self._convert({ h: self.value.h, s: 100, b: 100 }, "hsb2hex" ) );
+          $this.css( 'background-color', self._convert({ h: self.value.h, s: self.value.s, b: self.value.b }, "hsb2hex" ) );
         });
       }).on( "blur", function() {
         self.$element.hide();
